@@ -49,7 +49,8 @@ def clean_and_validate_data(df: pd.DataFrame) -> pd.DataFrame:
         if isinstance(val, str):
             val = val.replace(",", ".").replace(" ", "")
         try:
-            return float(val)
+            v = float(val)
+            return 0.0 if pd.isna(v) else v
         except ValueError:
             return 0.0
             
