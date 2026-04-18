@@ -25,7 +25,7 @@ def _get_col_decimals(ws, min_row):
                         pass
                     elif decimals > max_d:
                         max_d = decimals
-        col_decimals[col_idx] = max_d
+        col_decimals[col_idx] = min(max_d, 3)
     return col_decimals
 
 def _format_details_sheet(ws):

@@ -5,10 +5,13 @@ services:
     build: .
     container_name: vehicle-trip-analyzer
     ports:
-      - "8000:8000"
+      - "8005:8000"
     volumes:
-      # Пробрасываем текущую директорию чтобы сохранять обновленный base.xlsx между перезапусками
-      - ./:/app
+      # Храним базу в именованном volume, чтобы деплой (github actions) её не удалял
+      - base_data:/app/data
     restart: unless-stopped
     environment:
       - PYTHONUNBUFFERED=1
+
+volumes:
+  base_data:
