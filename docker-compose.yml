@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: vehicle-trip-analyzer
+    ports:
+      - "8000:8000"
+    volumes:
+      # Пробрасываем текущую директорию чтобы сохранять обновленный base.xlsx между перезапусками
+      - ./:/app
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
